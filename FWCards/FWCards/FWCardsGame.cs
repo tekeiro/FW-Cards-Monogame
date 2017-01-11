@@ -1,6 +1,9 @@
-﻿using Microsoft.Xna.Framework;
+﻿using FWCards.Config;
+using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
+using Nez;
+using Nez.Tiled;
 
 namespace FWCards
 {
@@ -12,10 +15,10 @@ namespace FWCards
         GraphicsDeviceManager graphics;
         SpriteBatch spriteBatch;
 
-        public FWCardsGame()
+        private Scene mapScene;
+
+        public FWCardsGame() : base(windowTitle: "FW Cards")
         {
-            graphics = new GraphicsDeviceManager(this);
-            Content.RootDirectory = "Content";
         }
 
         /// <summary>
@@ -26,9 +29,25 @@ namespace FWCards
         /// </summary>
         protected override void Initialize()
         {
-            // TODO: Add your initialization logic here
-
             base.Initialize();
+            Window.AllowUserResizing = true;
+
+            var inputService = new InputService();
+            Core.services.AddService(typeof(InputService), inputService);
+
+
+            Screen.setSize(800, 600);
+
+            mapScene = Scene.createWithDefaultRenderer(Color.CornflowerBlue);
+            mapScene.setDesignResolution(800, 600, Scene.SceneResolutionPolicy.ExactFit);
+
+            var tiledEntity = mapScene.createEntity("map");
+            var tiledMap = mapScene.content.Load<TiledMap>(@"Maps/map01");
+            tiledEntity.addComponent(new TiledMapComponent(tiledMap));
+
+            var grayEntity = EntityFactory.CreateGrayMapPlayer(mapScene);
+
+            scene = mapScene;
         }
 
         /// <summary>
