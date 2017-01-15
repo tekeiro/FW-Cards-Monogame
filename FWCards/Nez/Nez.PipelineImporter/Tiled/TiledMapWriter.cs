@@ -87,6 +87,15 @@ namespace Nez.TiledMaps
 					}
 
 					writeCustomProperties( writer, tile.properties );
+
+                    // Angel B: Write object groups if any, otherwise write 0 to indicate no object groups
+				    if (tile.objectGroups != null && tile.objectGroups.Count > 0)
+				    {
+				        TiledMapProcessor.logger.LogMessage("Tile {0} has {1} objects group", tile.id, tile.objectGroups.Count);
+				        writeObjectGroups(tile.objectGroups, writer);
+				    }
+                    else 
+                        writer.Write((int)0);     
 				}
 			}
 
@@ -197,6 +206,67 @@ namespace Nez.TiledMaps
 			}
 		}
 
+        // Angel B: Method to write Object Groups
+	    static void writeObjectGroups(List<TmxObjectGroup> objectGroups, ContentWriter writer)
+	    {
+            writer.Write(objectGroups.Count);
+	        TiledMapProcessor.logger.LogMessage("Writed {0} objectgroups count", objectGroups.Count);
+            foreach (var group in objectGroups)
+            {
+                writer.Write(group.name ?? "tileObject");
+                writer.Write(hexToColor(group.color ?? ""));
+                writer.Write(group.visible);
+                writer.Write(group.opacity);
+
+                TiledMapProcessor.logger.LogMessage("Group name:{0}, color: {1}, visible: {2}, opacity: {3}",
+                    group.name ?? "tileObject", hexToColor(group.color ?? ""), group.visible, group.opacity);
+
+                writeCustomProperties(writer, group.properties);
+
+                writer.Write(group.objects.Count);
+                foreach (var obj in group.objects)
+                {
+                    writer.Write(obj.gid);
+                    writer.Write(obj.name ?? string.Empty);
+                    writer.Write(obj.type ?? string.Empty);
+                    writer.Write((int)obj.x);
+                    writer.Write((int)obj.y);
+                    writer.Write((int)obj.width);
+                    writer.Write((int)obj.height);
+                    writer.Write(obj.rotation);
+                    writer.Write(obj.visible);
+
+                    if (obj.ellipse != null)
+                    {
+                        writer.Write("ellipse");
+                    }
+                    else if (obj.image != null)
+                    {
+                        writer.Write("image");
+                    }
+                    else if (obj.polygon != null)
+                    {
+                        writer.Write("polygon");
+                        writePointList(writer, obj, obj.polygon.points);
+                    }
+                    else if (obj.polyline != null)
+                    {
+                        writer.Write("polyline");
+                        writePointList(writer, obj, obj.polyline.points);
+                    }
+                    else
+                    {
+                        writer.Write("none");
+                    }
+
+                    writer.Write(obj.type ?? string.Empty);
+
+                    writeCustomProperties(writer, obj.properties);
+                }
+
+                TiledMapProcessor.logger.LogMessage("done writing ObjectGroup: {0}", group);
+            }
+        }
 
 		static void writePointList( ContentWriter writer, TmxObject obj, List<Vector2> points )
 		{

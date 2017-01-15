@@ -15,6 +15,9 @@ namespace Nez.Tiled
 		public List<TiledTileAnimationFrame> animationFrames;
 		public Dictionary<string, string> properties = new Dictionary<string, string>();
 
+        // Angel B: Added object group
+        public readonly  List<TiledObjectGroup> objectGroups = new List<TiledObjectGroup>();
+
 		/// <summary>
 		/// returns the value of an "nez:isDestructable" property if present in the properties dictionary
 		/// </summary>
