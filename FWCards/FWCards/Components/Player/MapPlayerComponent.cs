@@ -13,6 +13,11 @@ using Nez.Textures;
 
 namespace FWCards.Components.Player
 {
+
+    /// <summary>
+    /// Component that represents a Controllable Player in
+    /// a Tiled Map
+    /// </summary>
     public class MapPlayerComponent : Component, IUpdatable
     {
         public enum Animations
@@ -25,9 +30,6 @@ namespace FWCards.Components.Player
         }
 
         // -----------  MEMBERS  ---------------------
-        //-- INPUT
-        private VirtualAxis _horizontalAxis;
-        private VirtualAxis _verticalAxis;
         //-- COMPS
         private Sprite<Animations> _animations;
         //-- ANIMATIONS
@@ -57,7 +59,7 @@ namespace FWCards.Components.Player
             var subtextures = Subtexture.subtexturesFromAtlas(texture, Assets.CHARS_WIDTH, Assets.CHARS_HEIGHT);
 
             _animations = entity.addComponent(new Sprite<Animations>(subtextures[idleAnim]));
-            _animations.setRenderLayer(0);
+            _animations.setRenderLayer(8);
 
             foreach (var animPair in walkAnimations)
             {
@@ -69,12 +71,6 @@ namespace FWCards.Components.Player
                 _animations.addAnimation(animPair.Key, new SpriteAnimation(regions));
             }
             
-        }
-
-        public override void onRemovedFromEntity()
-        {
-            _horizontalAxis.deregister();
-            _verticalAxis.deregister();
         }
 
 

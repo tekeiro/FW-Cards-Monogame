@@ -23,6 +23,7 @@ namespace FWCards.Config
                 { MapPlayerComponent.Animations.WalkTop, new int[] {42, 43, 44} },
             };
             var mapPlayerComp = new MapPlayerComponent(7, walkAnims);
+            
             grayMapPlayer.addComponent(mapPlayerComp);
 
             return grayMapPlayer;
