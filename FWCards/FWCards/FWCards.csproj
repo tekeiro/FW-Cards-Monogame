@@ -40,6 +40,7 @@
   <ItemGroup>
     <Compile Include="Components\Map\FWTiledMapComponent.cs" />
     <Compile Include="Components\Map\FWTiledMapLayerRenderer.cs" />
+    <Compile Include="Components\Map\FWTiledMover.cs" />
     <Compile Include="Components\Player\MapPlayerComponent.cs" />
     <Compile Include="Config\Assets.cs" />
     <Compile Include="Config\EntityFactory.cs" />

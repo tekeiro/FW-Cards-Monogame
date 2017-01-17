@@ -41,6 +41,8 @@ namespace FWCards
             Debug.log("Added Player Entity");
             var grayEntity = EntityFactory.CreateGrayMapPlayer(mapScene);
 
+            mapScene.setMapStartPositionForEntity(grayEntity);
+
             scene = mapScene;
         }
 

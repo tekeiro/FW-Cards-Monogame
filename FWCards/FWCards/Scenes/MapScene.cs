@@ -4,7 +4,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using FWCards.Components.Map;
+using FWCards.Config;
+using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Graphics;
 using Nez;
+using Nez.Textures;
 using Nez.Tiled;
 
 namespace FWCards.Scenes
@@ -15,6 +19,8 @@ namespace FWCards.Scenes
     public class MapScene : Scene
     {
         //-----------  CONSTANTS  ----------------
+        public static readonly string START_POINT = "startPoint";
+
         /// <summary>
         /// Array with all possible RenderLayer to sort 
         /// layers in a Tiled Map.
@@ -43,16 +49,34 @@ namespace FWCards.Scenes
         private List<Entity> mapLayersEntities = new List<Entity>();
 
         private RenderLayerRenderer mapLayerRenderer = null;
-        
+
+        private Texture2D charactersTexture;
+        private List<Subtexture> charactersSubtextures;
 
 
         //-----------  PROPERTIES  ----------------
         public Entity MapEntity { get { return mapEntity; } }
 
-        public IEnumerable<Entity> MapLayersEntities { get { return mapLayersEntities; } }
+        public IEnumerable<Entity> MapLayersEntities => mapLayersEntities;
+
+        public Texture2D MapCharactersTexture => charactersTexture;
+
+        public IReadOnlyList<Subtexture> MapCharactersSubtextures => charactersSubtextures;
 
         //-----------  CONSTRUCTOR  ----------------
+        public MapScene()
+        {
+            charactersTexture = content.Load<Texture2D>(Assets.MAIN_CHARS);
+            charactersSubtextures = Subtexture.subtexturesFromAtlas(charactersTexture, Assets.CHARS_WIDTH, Assets.CHARS_HEIGHT);
+        }
 
+        //-----------  EVENTS  ----------------
+        public override void initialize()
+        {
+            base.initialize();
+
+            changeRenderLayers(PREDEFINED_RENDER_LAYERS);
+        }
 
         //-----------  METHODS  ----------------
         public void changeMap(string mapAssetPath)
@@ -76,6 +100,12 @@ namespace FWCards.Scenes
             }
         }
 
+        /// <summary>
+        /// Change Render Layers used for draw all layers of Map.
+        /// This method remove actual RenderLayerRenderer and creates
+        /// a new one.
+        /// </summary>
+        /// <param name="renderLayers"></param>
         public void changeRenderLayers(int[] renderLayers)
         {
             if (mapLayerRenderer != null)
@@ -88,11 +118,34 @@ namespace FWCards.Scenes
             addRenderer(mapLayerRenderer);
         }
 
-        public override void initialize()
+        /// <summary>
+        /// Search for a StartPosition marker in TiledMap and update
+        /// entity passed with that position.
+        /// </summary>
+        /// <param name="entity"></param>
+        public void setMapStartPositionForEntity(Entity entity)
         {
-            base.initialize();
-
-            changeRenderLayers(PREDEFINED_RENDER_LAYERS);
+            TiledObject startPointObject = findFirstObjectByTypeInAllMap(START_POINT);
+            if (startPointObject != null)
+            {
+                entity.transform.position = new Vector2(
+                    startPointObject.position.X, startPointObject.position.Y
+                );
+            }
         }
+
+        public TiledObject findFirstObjectByTypeInAllMap(string type)
+        {
+            foreach (var objGroup in _tiledMap.objectGroups)
+            {
+                foreach (var obj in objGroup.objects)
+                {
+                    if (obj.type == type)
+                        return obj;
+                }
+            }
+            return null;
+        }
+        
     }
 }
