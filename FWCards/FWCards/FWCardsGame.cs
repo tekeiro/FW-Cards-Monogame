@@ -1,4 +1,7 @@
-﻿using FWCards.Config;
+﻿using FWCards.Components.Player;
+using FWCards.Config;
+using FWCards.Model;
+using FWCards.Model.Cards;
 using FWCards.Scenes;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
@@ -42,9 +45,19 @@ namespace FWCards
             var grayEntity = EntityFactory.CreateGrayMapPlayer(mapScene);
 
             mapScene.setMapStartPositionForEntity(grayEntity);
+            var mapComp = grayEntity.getComponent<MapPlayerComponent>();
+
+            GameDB gameDb = new GameDB();
+            Core.services.AddService(typeof(GameDB), gameDb);
+
+            LoadDatabase(gameDb);
 
             scene = mapScene;
         }
 
+        public void LoadDatabase(GameDB gameDb)
+        {
+            gameDb.Cards.loadCards();
+        }
     }
 }

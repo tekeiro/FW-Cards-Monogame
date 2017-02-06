@@ -135,7 +135,7 @@ namespace FWCards.Components.Map
 
             foreach (var tile in tiles)
             {
-                if (tile != null && tile.tilesetTile.objectGroups.Count > 0)
+                if (tile != null && tile.tilesetTile != null && tile.tilesetTile.objectGroups.Count > 0)
                 {
                     foreach (var objGroup in tile.tilesetTile.objectGroups)
                     {

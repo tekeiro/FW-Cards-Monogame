@@ -5,9 +5,12 @@ using System.Text;
 using System.Threading.Tasks;
 using FWCards.Components.Map;
 using FWCards.Config;
+using FWCards.Utils.Collider;
+using FWCards.Utils.Map;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Nez;
+using Nez.Sprites;
 using Nez.Textures;
 using Nez.Tiled;
 
@@ -18,8 +21,7 @@ namespace FWCards.Scenes
     /// </summary>
     public class MapScene : Scene
     {
-        //-----------  CONSTANTS  ----------------
-        public static readonly string START_POINT = "startPoint";
+        
 
         /// <summary>
         /// Array with all possible RenderLayer to sort 
@@ -44,14 +46,15 @@ namespace FWCards.Scenes
         //-----------  MEMBER  -------------------
         private string _mapAssetPath;
         private TiledMap _tiledMap;
+        private FWMapProcessor _mapProcessor;
 
         private Entity mapEntity;
-        private List<Entity> mapLayersEntities = new List<Entity>();
+        private readonly List<Entity> mapLayersEntities = new List<Entity>();
 
         private RenderLayerRenderer mapLayerRenderer = null;
 
-        private Texture2D charactersTexture;
-        private List<Subtexture> charactersSubtextures;
+        private readonly Texture2D charactersTexture;
+        private readonly List<Subtexture> charactersSubtextures;
 
 
         //-----------  PROPERTIES  ----------------
@@ -62,6 +65,8 @@ namespace FWCards.Scenes
         public Texture2D MapCharactersTexture => charactersTexture;
 
         public IReadOnlyList<Subtexture> MapCharactersSubtextures => charactersSubtextures;
+
+        public FWMapProcessor MapProcessor => _mapProcessor;
 
         //-----------  CONSTRUCTOR  ----------------
         public MapScene()
@@ -74,6 +79,7 @@ namespace FWCards.Scenes
         public override void initialize()
         {
             base.initialize();
+            _mapProcessor = new FWMapProcessor();
 
             changeRenderLayers(PREDEFINED_RENDER_LAYERS);
         }
@@ -81,23 +87,71 @@ namespace FWCards.Scenes
         //-----------  METHODS  ----------------
         public void changeMap(string mapAssetPath)
         {
+            clearMapEntities();
+
             _mapAssetPath = mapAssetPath;
             _tiledMap = content.Load<TiledMap>(mapAssetPath);
+            
+            _mapProcessor.Process(_tiledMap, this);
 
-            destroyAllEntities();
-            mapEntity = createEntity("map");
+            clearColor = _mapProcessor.BackgroundColor;
+            if (_mapProcessor.BackgroundPath != null)
+            {
+                var backgroundTxr = content.Load<Texture2D>(_mapProcessor.BackgroundPath);
+                var bkgEntity = createEntity("__map_background");
+                var bkgSprite = bkgEntity.addComponent(new Sprite());
+                bkgSprite.setSubtexture(new Subtexture(backgroundTxr));
+                bkgSprite.entity.transform.position = new Vector2(0f, 0f);
+                
+            }
+            
+            mapEntity = createEntity("__map");
             mapEntity.addComponent(new FWTiledMapComponent(_tiledMap));
 
             int iLayer = 0;
             foreach (var layer in _tiledMap.layers)
             {
-                var layerEntity = createEntity("layer_" + iLayer + "_" + layer.name);
+                var layerEntity = createEntity("__layer_" + iLayer + "_" + layer.name);
                 layerEntity.addComponent(new FWTiledMapLayerRenderer(layer, _tiledMap));
                 mapLayersEntities.Add(layerEntity);
                 //layerEntity.transform.setParent(mapEntity.transform);
 
                 iLayer++;
             }
+        }
+
+        public Vector2 getPositionForPortalArea(string areaName, Vector2 pos, PortalBoxCollider oldPortal)
+        {
+            var result = new Vector2(0f, 0f);
+            var portalObj = _mapProcessor.getPortalObjectByName(areaName);
+            if (portalObj != null)
+            {
+                if (portalObj.width >= portalObj.height)
+                {
+                    var xDelta = pos.X - oldPortal.bounds.x;
+                    xDelta = (xDelta/oldPortal.width) * portalObj.width;
+                    result.X = portalObj.position.X + xDelta;
+                    result.Y = portalObj.position.Y;
+
+                    if (pos.Y > portalObj.position.Y)
+                        result.Y -= 5;
+                    else
+                        result.Y += 5;
+                }
+                else
+                {
+                    var yDelta = pos.Y - oldPortal.bounds.y;
+                    yDelta = (yDelta/oldPortal.height)*portalObj.height;
+                    result.X = portalObj.position.X;
+                    result.Y = portalObj.position.Y + yDelta;
+
+                    if (pos.X > portalObj.position.X)
+                        result.X -= 5;
+                    else
+                        result.X += 5;
+                }
+            }
+            return result;
         }
 
         /// <summary>
@@ -125,27 +179,24 @@ namespace FWCards.Scenes
         /// <param name="entity"></param>
         public void setMapStartPositionForEntity(Entity entity)
         {
-            TiledObject startPointObject = findFirstObjectByTypeInAllMap(START_POINT);
-            if (startPointObject != null)
-            {
-                entity.transform.position = new Vector2(
-                    startPointObject.position.X, startPointObject.position.Y
-                );
-            }
+            entity.transform.position = new Vector2(
+                _mapProcessor.PlayerStartPoint.X, _mapProcessor.PlayerStartPoint.Y
+            );
         }
 
-        public TiledObject findFirstObjectByTypeInAllMap(string type)
+
+        //-----------  PRIVATE METHODS  -----------------
+        private void clearMapEntities()
         {
-            foreach (var objGroup in _tiledMap.objectGroups)
+            if (mapEntity != null)
             {
-                foreach (var obj in objGroup.objects)
-                {
-                    if (obj.type == type)
-                        return obj;
-                }
+                mapEntity.destroy();
             }
-            return null;
+            foreach (var mapLayerEntity in mapLayersEntities)
+            {
+                mapLayerEntity.destroy();
+            }
+            mapLayersEntities.Clear();
         }
-        
     }
 }

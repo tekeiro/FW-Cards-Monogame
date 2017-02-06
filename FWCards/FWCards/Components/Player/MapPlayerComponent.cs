@@ -6,12 +6,14 @@ using System.Threading.Tasks;
 using FWCards.Components.Map;
 using FWCards.Config;
 using FWCards.Scenes;
+using FWCards.Utils.Collider;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using Nez;
 using Nez.Sprites;
 using Nez.Textures;
+using Nez.Tiled;
 
 namespace FWCards.Components.Player
 {
@@ -30,7 +32,7 @@ namespace FWCards.Components.Player
     /// Component that represents a Controllable Player in
     /// a Tiled Map
     /// </summary>
-    public class MapPlayerComponent : Component, IUpdatable
+    public class MapPlayerComponent : Component, IUpdatable, ITriggerListener
     {
         public static readonly int PLAYER_RENDER_LAYER = 8;
 
@@ -51,6 +53,8 @@ namespace FWCards.Components.Player
         private MapPlayerCompData _playerData;
         //-- REFS
         private InputService Input;
+
+        private bool inPortalArea = false;
 
         // -----------  CONSTRUCTOR  ---------------------
         public MapPlayerComponent(MapPlayerCompData playerData)
@@ -126,6 +130,65 @@ namespace FWCards.Components.Player
             // Move Sprite
             if (!colResult.collides)
                 entity.transform.position += vel;
+            
+        }
+
+        private TiledObject portalDisabled = null;
+
+        //-------------  TRIGGER LISTENER  ---------------
+        private bool isColliderDisabled(Collider other)
+        {
+            if (portalDisabled == null)
+                return false;
+            else
+            {
+                var portalCol = other as PortalBoxCollider;
+                return portalCol.TiledObjReference == portalDisabled;
+            }
+
+        }
+
+        public void onTriggerEnter(Collider other, Collider local)
+        {
+
+            if (other is PortalBoxCollider)
+            {
+                var portal = other as PortalBoxCollider;
+                Debug.info("Player collides with portal to map {0} and area {1}", portal.MapName, portal.AreaName);
+            }
+
+            if (other is PortalBoxCollider && !inPortalArea 
+                && !isColliderDisabled(other))
+            {
+                inPortalArea = true;
+
+                var portal = other as PortalBoxCollider;
+                var mapScene = entity.scene as MapScene;
+                mapScene.changeMap("Maps/" + portal.MapName);
+                var position = mapScene.getPositionForPortalArea(portal.AreaName, entity.transform.position, portal);
+                entity.transform.position = new Vector2(position.X, position.Y);
+
+                portalDisabled = mapScene.MapProcessor.getPortalObjectByName(portal.AreaName);
+                Debug.info("Portal disabled {0}", portalDisabled?.name ?? "N/A");
+            }
+        }
+
+        public void onTriggerExit(Collider other, Collider local)
+        {
+            if (other is PortalBoxCollider)
+            {
+                var portal = other as PortalBoxCollider;
+                Debug.info("Exited of portal to map {0} and area {1}", portal.MapName, portal.AreaName);
+            }
+
+            if (other is PortalBoxCollider && inPortalArea 
+                && isColliderDisabled(other) )
+            {
+                var portal = other as PortalBoxCollider;
+                portalDisabled = null;
+                inPortalArea = false;
+                Debug.info("No portal disabled");
+            }
         }
     }
 }

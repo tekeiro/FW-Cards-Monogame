@@ -3,6 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using FWCards.Config;
+using FWCards.Utils;
+using FWCards.Utils.Collider;
 using Nez;
 using Nez.Tiled;
 using Microsoft.Xna.Framework;
@@ -14,8 +17,14 @@ namespace FWCards.Components.Map
     /// </summary>
     public class FWTiledMapComponent : Component, IUpdatable
     {
+        //-----------  CONSTANTS  ----------------
+        //-- PORTAL
+        private static readonly string PORTAL_MAP = "Map";
+        private static readonly string PORTAL_AREA = "Area";
+        private static readonly string PORTAL_PHYLAY = "PhysicsLayer";
+
         //-------  MEMBERS  ------------
-        
+        private Dictionary<string, PortalBoxCollider> portals = new Dictionary<string, PortalBoxCollider>();
 
 
         //-------  CONSTRUCTOR  ------------
@@ -28,6 +37,12 @@ namespace FWCards.Components.Map
         //-------  PROPERTIES  ------------
         public TiledMap Map { get; set; }
 
+        public IEnumerable<PortalBoxCollider> Portals => portals.Values;
+
+
+        //-------  PORTALS  METHODS ----------
+        public PortalBoxCollider findColliderByName(string name)
+            => portals[name];
 
         //-------  METHODS  ------------
         public void update()
@@ -35,6 +50,44 @@ namespace FWCards.Components.Map
             Map.update();
         }
 
+        public override void onAddedToEntity()
+        {
+            foreach (var objGroup in Map.objectGroups)
+            {
+                foreach (var obj in objGroup.objects)
+                {
+                    // Fetch portals
+                    if (obj.type == Constants.PORTAL_TYPE)
+                    {
+                        string portalMap = obj.properties.GetOrElse(PORTAL_MAP);
+                        string portalArea = obj.properties.GetOrElse(PORTAL_AREA);
+                        int portalPhysicLayer = Converter.ParseInt(obj.properties.GetOrElse(PORTAL_PHYLAY), 1 << 0);
+
+                        var portalCollider = new PortalBoxCollider(
+                            new RectangleF(obj.position.X, obj.position.Y,
+                                obj.width, obj.height)
+                        );
+                        portalCollider.physicsLayer = portalPhysicLayer;
+                        portalCollider.MapName = portalMap;
+                        portalCollider.AreaName = portalArea;
+                        portalCollider.entity = entity;
+                        portalCollider.TiledObjReference = obj;
+
+                        portals.Add(obj.name, portalCollider);
+                        Physics.addCollider(portalCollider);
+                    }
+                }
+            }
+        }
+
+        public override void onRemovedFromEntity()
+        {
+            foreach (var portal in portals)
+            {
+                Physics.removeCollider(portal.Value);
+            }
+            portals.Clear();
+        }
 
         //-----------  DEBUG RENDER  ------------------
         public override void debugRender(Graphics graphics)

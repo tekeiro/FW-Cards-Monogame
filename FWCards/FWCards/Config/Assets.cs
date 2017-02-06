@@ -10,6 +10,7 @@ namespace FWCards.Config
     {
         //  MAPS
         public static readonly string MAP01 = @"Maps/map01";
+        public static readonly string MAP02 = @"Maps/map02";
 
 
         // CHARS
