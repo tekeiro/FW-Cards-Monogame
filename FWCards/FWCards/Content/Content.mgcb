@@ -162,7 +162,27 @@
 /build:Maps/futuristic/Tiles1.png
 
 #begin Maps/map01.tmx
-/importer:
-/processor:
+/importer:TiledMapImporter
+/processor:TiledMapProcessor
 /build:Maps/map01.tmx
+
+#begin Maps/map02.tmx
+/importer:TiledMapImporter
+/processor:TiledMapProcessor
+/build:Maps/map02.tmx
+
+#begin Background/stars.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:Background/stars.png
+
+#begin DB/cards.json
+/copy:DB/cards.json
 

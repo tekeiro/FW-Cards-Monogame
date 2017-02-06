@@ -1,0 +1,40 @@
+﻿[
+  {
+    "Id": 1,
+    "Name": "Dagger",
+    "Description": "Bigger than knife. Its a weapon for rogues.",
+    "Flags": 4,
+    "ManaType": "Will",
+    "TargetCount": 1,
+    "TargetType": "Enemy",
+    "Icon": 0,
+    "HitAnim": "",
+    "HitSound": "",
+    "Price": 15,
+    "Effects": [
+      {
+        "Type": "Attack",
+        "Params": [ 0, 10, 6000, 0 ]
+      }
+    ]
+  },
+  {
+    "Id": 2,
+    "Name": "Sword",
+    "Description": "Best weapon for knights.",
+    "Flags": 4,
+    "ManaType": "Will",
+    "TargetCount": 1,
+    "TargetType": "Enemy",
+    "Icon": 1,
+    "HitAnim": "",
+    "HitSound": "",
+    "Price": 30,
+    "Effects": [
+      {
+        "Type": "Attack",
+        "Params":  [0, 30, 6500, 0] 
+      }
+    ] 
+  }
+]

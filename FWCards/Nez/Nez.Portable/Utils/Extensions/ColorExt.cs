@@ -26,7 +26,7 @@ namespace Nez
 			float r = ( hexToByte( hex[0] ) * 16 + hexToByte( hex[1] ) ) / 255.0f;
 			float g = ( hexToByte( hex[2] ) * 16 + hexToByte( hex[3] ) ) / 255.0f;
 			float b = ( hexToByte( hex[4] ) * 16 + hexToByte( hex[5] ) ) / 255.0f;
-
+            
 			return new Color( r, g, b );
 		}
 
