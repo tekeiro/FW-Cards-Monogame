@@ -25,9 +25,9 @@ namespace FWCards.Model
 
     public enum AlteredState
     {
-        Burnt,
-        Frozen,
-        Paralized,
+        Burnt=0,
+        Frozen=1,
+        Paralized=2,
         Blind,
         Muted,
         Confused,

@@ -48,16 +48,29 @@
     <Compile Include="Config\EntityFactory.cs" />
     <Compile Include="Config\InputService.cs" />
     <Compile Include="FWCardsGame.cs" />
+    <Compile Include="Model\Battle\BattleParameter.cs" />
     <Compile Include="Model\Cards\CardData.cs" />
     <Compile Include="Model\Cards\CardInfo.cs" />
     <Compile Include="Model\Cards\CardsDB.cs" />
+    <Compile Include="Model\Chars\CharData.cs" />
+    <Compile Include="Model\Chars\CharGrowth.cs" />
+    <Compile Include="Model\Chars\CharInfo.cs" />
+    <Compile Include="Model\Chars\ParameterGrowth.cs" />
     <Compile Include="Model\Effects\Effect.cs" />
     <Compile Include="Model\Effects\EffectFactory.cs" />
     <Compile Include="Model\Effects\EquipEffect.cs" />
     <Compile Include="Model\Effects\EquipEffectFactory.cs" />
+    <Compile Include="Model\Enemies\EnemyData.cs" />
+    <Compile Include="Model\Enemies\EnemyInfo.cs" />
     <Compile Include="Model\Enums.cs" />
+    <Compile Include="Model\Equipment\EquipmentData.cs" />
+    <Compile Include="Model\Equipment\EquipmentInfo.cs" />
+    <Compile Include="Model\Equipment\EquipmentsDB.cs" />
+    <Compile Include="Model\GameData.cs" />
     <Compile Include="Model\GameDB.cs" />
+    <Compile Include="Model\Techs\TechData.cs" />
     <Compile Include="Model\Techs\TechInfo.cs" />
+    <Compile Include="Model\Techs\TechsDB.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Scenes\MapScene.cs" />
@@ -103,6 +116,9 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Content\DB\cards.json" />
+    <None Include="Content\DB\chars.json" />
+    <None Include="Content\DB\equips.json" />
+    <None Include="Content\DB\techs.json" />
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup />

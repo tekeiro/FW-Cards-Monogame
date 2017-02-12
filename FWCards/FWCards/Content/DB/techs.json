@@ -1,0 +1,56 @@
+﻿[
+  {
+    "Id": 1,
+    "Name": "Steal",
+    "Description": "Try to steal cards from enemy",
+    "Flags": 0,
+    "TargetCount": 1,
+    "TargetType": "Enemy",
+    "Icon": 0,
+    "HitAnim": "",
+    "HitSound": "",
+    "Price": 60,
+    "RequiredCardId":  1,
+    "Effects": [
+      {
+        "Type": "Steal",
+        "Params": [ 1, 4000 ]
+      }
+    ],
+    "ManaRequirements": [
+      {
+        "Count": 2,
+        "Type": "Will"
+      }
+    ] 
+  },
+  {
+    "Id": 2,
+    "Name": "Assault",
+    "Description": "Charge against enemy",
+    "Flags": 0,
+    "TargetCount": 1,
+    "TargetType": "Enemy",
+    "Icon": 0,
+    "HitAnim": "",
+    "HitSound": "",
+    "Price": 70,
+    "RequiredCardId":  2,
+    "Effects": [
+      {
+        "Type": "Attack",
+        "Params": [ 0, 60, 7500, 0 ]
+      },
+      {
+        "Type": "AddState",
+        "Params": [ 2, 4, 1500 ]
+      }
+    ],
+    "ManaRequirements": [
+      {
+        "Count": 3,
+        "Type": "Will"
+      }
+    ] 
+  }
+]

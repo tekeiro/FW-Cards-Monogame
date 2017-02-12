@@ -17,8 +17,13 @@ namespace FWCards.Config
     public static class Constants
     {
         //------- MODEL  ----------------------
-        //----- CARDS  ---------
         public static readonly string CARDS_PATH = @"DB\cards.json";
+        public static readonly string TECHS_PATH = @"DB\techs.json";
+        public static readonly string EQUIPS_PATH = @"DB\equips.json";
+        //-- CHARS
+        public static readonly string CHARS_PATH = @"DB\chars.json";
+        public static readonly byte DEFAULT_MANA_CAPACITY = 3;
+        public static readonly byte DEFAULT_DECK_CAPACITY = 10;
 
         //------- MAP PROPERTIES  -------------
         public static readonly string BACKGROUND_IMG = "Background";

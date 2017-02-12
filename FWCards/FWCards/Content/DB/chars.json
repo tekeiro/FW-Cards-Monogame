@@ -1,0 +1,233 @@
+﻿[
+  {
+    "Name": "GrayM",
+    "CharGrowth": {
+      "Health": {
+        "Scalar": 1.1,
+        "Exponent": 1.2,
+        "Adding": 0
+      },
+      "Attack": {
+        "Scalar": 1.1,
+        "Exponent": 1.2,
+        "Adding": 0
+      },
+      "Deffense": {
+        "Scalar": 1.1,
+        "Exponent": 1.2,
+        "Adding": 0
+      },
+      "Intelligence": {
+        "Scalar": 1.1,
+        "Exponent": 1.2,
+        "Adding": 0
+      },
+      "Resistance": {
+        "Scalar": 1.1,
+        "Exponent": 1.2,
+        "Adding": 0
+      },
+      "Agility": {
+        "Scalar": 1.1,
+        "Exponent": 1.2,
+        "Adding": 0
+      },
+      "Luck": {
+        "Scalar": 1.1,
+        "Exponent": 1.2,
+        "Adding": 0
+      },
+      "ManaCapacity": {
+        "Scalar": 1.1,
+        "Exponent": 1.2,
+        "Adding": 0
+      },
+      "DeckCapacity": {
+        "Scalar": 1.1,
+        "Exponent": 1.2,
+        "Adding": 0
+      },
+      "XpRequired": {
+        "Scalar": 1.1,
+        "Exponent": 1.2,
+        "Adding": 0
+      }
+    }
+
+  },
+
+
+  {
+    "Name": "GingerF",
+    "CharGrowth": {
+      "Health": {
+        "Scalar": 1.1,
+        "Exponent": 1.2,
+        "Adding": 0
+      },
+      "Attack": {
+        "Scalar": 1.1,
+        "Exponent": 1.2,
+        "Adding": 0
+      },
+      "Deffense": {
+        "Scalar": 1.1,
+        "Exponent": 1.2,
+        "Adding": 0
+      },
+      "Intelligence": {
+        "Scalar": 1.1,
+        "Exponent": 1.2,
+        "Adding": 0
+      },
+      "Resistance": {
+        "Scalar": 1.1,
+        "Exponent": 1.2,
+        "Adding": 0
+      },
+      "Agility": {
+        "Scalar": 1.1,
+        "Exponent": 1.2,
+        "Adding": 0
+      },
+      "Luck": {
+        "Scalar": 1.1,
+        "Exponent": 1.2,
+        "Adding": 0
+      },
+      "ManaCapacity": {
+        "Scalar": 1.1,
+        "Exponent": 1.2,
+        "Adding": 0
+      },
+      "DeckCapacity": {
+        "Scalar": 1.1,
+        "Exponent": 1.2,
+        "Adding": 0
+      },
+      "XpRequired": {
+        "Scalar": 1.1,
+        "Exponent": 1.2,
+        "Adding": 0
+      }
+    }
+
+  },
+
+
+  {
+    "Name": "BlondeF",
+    "CharGrowth": {
+      "Health": {
+        "Scalar": 1.1,
+        "Exponent": 1.2,
+        "Adding": 0
+      },
+      "Attack": {
+        "Scalar": 1.1,
+        "Exponent": 1.2,
+        "Adding": 0
+      },
+      "Deffense": {
+        "Scalar": 1.1,
+        "Exponent": 1.2,
+        "Adding": 0
+      },
+      "Intelligence": {
+        "Scalar": 1.1,
+        "Exponent": 1.2,
+        "Adding": 0
+      },
+      "Resistance": {
+        "Scalar": 1.1,
+        "Exponent": 1.2,
+        "Adding": 0
+      },
+      "Agility": {
+        "Scalar": 1.1,
+        "Exponent": 1.2,
+        "Adding": 0
+      },
+      "Luck": {
+        "Scalar": 1.1,
+        "Exponent": 1.2,
+        "Adding": 0
+      },
+      "ManaCapacity": {
+        "Scalar": 1.1,
+        "Exponent": 1.2,
+        "Adding": 0
+      },
+      "DeckCapacity": {
+        "Scalar": 1.1,
+        "Exponent": 1.2,
+        "Adding": 0
+      },
+      "XpRequired": {
+        "Scalar": 1.1,
+        "Exponent": 1.2,
+        "Adding": 0
+      }
+    }
+
+  },
+
+
+  {
+    "Name": "GuyM",
+    "CharGrowth": {
+      "Health": {
+        "Scalar": 1.1,
+        "Exponent": 1.2,
+        "Adding": 0
+      },
+      "Attack": {
+        "Scalar": 1.1,
+        "Exponent": 1.2,
+        "Adding": 0
+      },
+      "Deffense": {
+        "Scalar": 1.1,
+        "Exponent": 1.2,
+        "Adding": 0
+      },
+      "Intelligence": {
+        "Scalar": 1.1,
+        "Exponent": 1.2,
+        "Adding": 0
+      },
+      "Resistance": {
+        "Scalar": 1.1,
+        "Exponent": 1.2,
+        "Adding": 0
+      },
+      "Agility": {
+        "Scalar": 1.1,
+        "Exponent": 1.2,
+        "Adding": 0
+      },
+      "Luck": {
+        "Scalar": 1.1,
+        "Exponent": 1.2,
+        "Adding": 0
+      },
+      "ManaCapacity": {
+        "Scalar": 1.1,
+        "Exponent": 1.2,
+        "Adding": 0
+      },
+      "DeckCapacity": {
+        "Scalar": 1.1,
+        "Exponent": 1.2,
+        "Adding": 0
+      },
+      "XpRequired": {
+        "Scalar": 1.1,
+        "Exponent": 1.2,
+        "Adding": 0
+      }
+    }
+
+  }
+
+]

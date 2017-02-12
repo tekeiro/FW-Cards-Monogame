@@ -1,0 +1,45 @@
+﻿[
+    {
+    "Id": 1,
+    "Name": "Silk shirt",
+    "Description": "A delicate shirt.",
+    "Type": "Chest",
+    "Price": 120,
+    "Parameters": {
+      "Health": 0,
+      "Attack": 0,
+      "Deffense": 3,
+      "Intelligence": 0,
+      "Resistance": 0,
+      "Agility": 0,
+      "Luck": 0
+    },
+    "Effects": [
+    ]
+  },
+
+  {
+    "Id": 2,
+    "Name": "Cowboy hat",
+    "Description": "A hat of a cowboy disguise",
+    "Type": "Head",
+    "Price": 80,
+    "Parameters": {
+      "Health": 50,
+      "Attack": 0,
+      "Deffense": 0,
+      "Intelligence": 0,
+      "Resistance": 0,
+      "Agility": 0,
+      "Luck": 0
+    },
+    "Effects": [
+      {
+        "Type": "AddState",
+        "Params": [ 6 ]
+      }
+    ]
+  }
+
+
+]

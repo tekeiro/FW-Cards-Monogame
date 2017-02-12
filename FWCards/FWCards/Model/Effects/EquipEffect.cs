@@ -23,8 +23,8 @@ namespace FWCards.Model.Effects
             Params = parameters;
         }
 
-        public EquipmentEffectType Type { get; private set; }
-        public ushort[] Params { get; private set; }
+        public EquipmentEffectType Type { get; set; }
+        public ushort[] Params { get; set; }
 
         public AlteredState GetAlteredState(int index)
         {

@@ -186,3 +186,12 @@
 #begin DB/cards.json
 /copy:DB/cards.json
 
+#begin DB/techs.json
+/copy:DB/techs.json
+
+#begin DB/chars.json
+/copy:DB/chars.json
+
+#begin DB/equips.json
+/copy:DB/equips.json
+

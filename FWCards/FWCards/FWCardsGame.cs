@@ -49,15 +49,13 @@ namespace FWCards
 
             GameDB gameDb = new GameDB();
             Core.services.AddService(typeof(GameDB), gameDb);
+            gameDb.loadDatabase();
 
-            LoadDatabase(gameDb);
+            GameData gameData = new GameData();
+            Core.services.AddService(typeof(GameData), gameData);
+            gameData.initialize();
 
             scene = mapScene;
-        }
-
-        public void LoadDatabase(GameDB gameDb)
-        {
-            gameDb.Cards.loadCards();
         }
     }
 }
