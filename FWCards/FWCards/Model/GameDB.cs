@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 using FWCards.Config;
 using FWCards.Model.Cards;
 using FWCards.Model.Chars;
+using FWCards.Model.Enemies;
 using FWCards.Model.Equipment;
 using FWCards.Model.Techs;
 using Newtonsoft.Json;
@@ -19,6 +20,7 @@ namespace FWCards.Model
         public CardsDB Cards { get; } = new CardsDB();
         public TechsDB Techs { get; } = new TechsDB();
         public EquipmentsDB Equipments { get; } = new EquipmentsDB();
+        public EnemyDB Enemies { get; } = new EnemyDB();
         
         //----- CHARS  ------
         public CharInfo Gray { get; private set; }
@@ -32,6 +34,7 @@ namespace FWCards.Model
             Cards.loadCards();
             Techs.loadTechs();
             Equipments.loadEquipments();
+            Enemies.loadEnemies();
             loadChars();
         }
 

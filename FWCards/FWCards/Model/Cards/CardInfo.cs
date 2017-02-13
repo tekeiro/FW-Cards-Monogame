@@ -35,7 +35,7 @@ namespace FWCards.Model.Cards
 
         public override string ToString()
         {
-            return $"{{{nameof(Id)}: {Id}, " +
+            return $"{nameof(CardInfo)}={{{nameof(Id)}: {Id}, " +
                    $"{nameof(Name)}: {Name}, " +
                    $"{nameof(Description)}: {Description}," +
                    $" {nameof(Flags)}: {Flags}, {nameof(ManaType)}: {ManaType}," +

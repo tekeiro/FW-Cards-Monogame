@@ -78,5 +78,10 @@ namespace FWCards.Model.Battle
             }
         }
 
+
+        public override string ToString()
+        {
+            return $"{nameof(BattleParameter)}={{{nameof(Health)}: {Health}, {nameof(Attack)}: {Attack}, {nameof(Deffense)}: {Deffense}, {nameof(Intelligence)}: {Intelligence}, {nameof(Resistance)}: {Resistance}, {nameof(Agility)}: {Agility}, {nameof(Luck)}: {Luck}}}";
+        }
     }
 }

@@ -1,7 +1,7 @@
 ﻿[
   {
     "Name": "GrayM",
-    "CharGrowth": {
+    "Growth": {
       "Health": {
         "Scalar": 1.1,
         "Exponent": 1.2,
@@ -59,7 +59,7 @@
 
   {
     "Name": "GingerF",
-    "CharGrowth": {
+    "Growth": {
       "Health": {
         "Scalar": 1.1,
         "Exponent": 1.2,
@@ -117,7 +117,7 @@
 
   {
     "Name": "BlondeF",
-    "CharGrowth": {
+    "Growth": {
       "Health": {
         "Scalar": 1.1,
         "Exponent": 1.2,
@@ -175,7 +175,7 @@
 
   {
     "Name": "GuyM",
-    "CharGrowth": {
+    "Growth": {
       "Health": {
         "Scalar": 1.1,
         "Exponent": 1.2,

@@ -31,7 +31,7 @@ namespace FWCards.Model.Equipment
 
         public override string ToString()
         {
-            return $"{{{nameof(Id)}: {Id}, " +
+            return $"{nameof(EquipmentInfo)}={{{nameof(Id)}: {Id}, " +
                    $"{nameof(Name)}: {Name}, " +
                    $"{nameof(Description)}: {Description}, " +
                    $"{nameof(Type)}: {Type}, {nameof(Price)}: {Price}," +

@@ -51,7 +51,7 @@ namespace FWCards.Model.Techs
 
         public override string ToString()
         {
-            return $"{{{nameof(Id)}: {Id}, {nameof(Name)}: {Name}, {nameof(Description)}: {Description}, {nameof(Flags)}: {Flags}, {nameof(TargetType)}: {TargetType}, {nameof(TargetCount)}: {TargetCount}, {nameof(Icon)}: {Icon}, {nameof(HitAnim)}: {HitAnim}, {nameof(HitSound)}: {HitSound}, {nameof(Price)}: {Price}, {nameof(RequiredCardId)}: {RequiredCardId}, {nameof(Effects)}: {Effects}, {nameof(ManaRequirements)}: {ManaRequirements}}}";
+            return $"{nameof(TechInfo)}={{{nameof(Id)}: {Id}, {nameof(Name)}: {Name}, {nameof(Description)}: {Description}, {nameof(Flags)}: {Flags}, {nameof(TargetType)}: {TargetType}, {nameof(TargetCount)}: {TargetCount}, {nameof(Icon)}: {Icon}, {nameof(HitAnim)}: {HitAnim}, {nameof(HitSound)}: {HitSound}, {nameof(Price)}: {Price}, {nameof(RequiredCardId)}: {RequiredCardId}, {nameof(Effects)}: {Effects}, {nameof(ManaRequirements)}: {ManaRequirements}}}";
         }
     }
 }

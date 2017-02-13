@@ -20,6 +20,7 @@ namespace FWCards.Config
         public static readonly string CARDS_PATH = @"DB\cards.json";
         public static readonly string TECHS_PATH = @"DB\techs.json";
         public static readonly string EQUIPS_PATH = @"DB\equips.json";
+        public static readonly string ENEMIES_PAH = @"DB\enemies.json";
         //-- CHARS
         public static readonly string CHARS_PATH = @"DB\chars.json";
         public static readonly byte DEFAULT_MANA_CAPACITY = 3;

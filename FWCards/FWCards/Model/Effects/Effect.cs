@@ -55,7 +55,7 @@ namespace FWCards.Model.Effects
 
         public override string ToString()
         {
-            return $"{{Type={Type.ToString()}, Params={Converter.ArrayToString(Params)}}}";
+            return $"{nameof(EquipEffect)}={{Type={Type.ToString()}, Params={Converter.ArrayToString(Params)}}}";
         }
     }
 }

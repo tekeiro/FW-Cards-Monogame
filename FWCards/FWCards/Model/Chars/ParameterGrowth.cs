@@ -39,5 +39,10 @@ namespace FWCards.Model.Chars
 
         public byte NextByte(uint index)
             => (byte) NextValue(index);
+
+        public override string ToString()
+        {
+            return $"(({Scalar}*X^{Exponent}+{Adding}))";
+        }
     }
 }

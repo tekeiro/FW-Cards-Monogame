@@ -61,6 +61,7 @@
     <Compile Include="Model\Effects\EquipEffect.cs" />
     <Compile Include="Model\Effects\EquipEffectFactory.cs" />
     <Compile Include="Model\Enemies\EnemyData.cs" />
+    <Compile Include="Model\Enemies\EnemyDB.cs" />
     <Compile Include="Model\Enemies\EnemyInfo.cs" />
     <Compile Include="Model\Enums.cs" />
     <Compile Include="Model\Equipment\EquipmentData.cs" />
@@ -68,6 +69,7 @@
     <Compile Include="Model\Equipment\EquipmentsDB.cs" />
     <Compile Include="Model\GameData.cs" />
     <Compile Include="Model\GameDB.cs" />
+    <Compile Include="Model\Hordes\HordeInfo.cs" />
     <Compile Include="Model\Techs\TechData.cs" />
     <Compile Include="Model\Techs\TechInfo.cs" />
     <Compile Include="Model\Techs\TechsDB.cs" />
@@ -117,6 +119,7 @@
   <ItemGroup>
     <None Include="Content\DB\cards.json" />
     <None Include="Content\DB\chars.json" />
+    <None Include="Content\DB\enemies.json" />
     <None Include="Content\DB\equips.json" />
     <None Include="Content\DB\techs.json" />
     <None Include="packages.config" />

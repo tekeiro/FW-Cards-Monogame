@@ -12,5 +12,9 @@ namespace FWCards.Model.Chars
         public string Name { get; set; }
         public CharGrowth Growth { get; set; } = new CharGrowth();
 
+        public override string ToString()
+        {
+            return $"{nameof(CharInfo)}={{{nameof(Name)}: {Name}, {nameof(Growth)}: {Growth}}}";
+        }
     }
 }

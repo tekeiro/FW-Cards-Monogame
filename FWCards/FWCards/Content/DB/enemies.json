@@ -1,0 +1,105 @@
+﻿[
+  {
+    "Id": 1,
+    "Name": "Goblin",
+    "BaseParameter": {
+      "Health": 300,
+      "Attack": 12,
+      "Deffense": 13,
+      "Intelligence": 8,
+      "Resistance": 10,
+      "Agility": 10,
+      "Luck": 13
+    },
+    "Level": 3,
+    "Xp": 80,
+    "Money": 78,
+    "MaxCardsAllowedToSteal": 3,
+    "IAScript": "",
+    "MaximumMana":  3, 
+    "CardsCanBeStolen": [
+      {
+        "StealProbability": 5600,
+        "BaseValue": 6,
+        "CardId": 1
+      }
+    ],
+    "DiseasesResistances": [
+      /*{
+        "State": "",
+        "Probability":  7800  
+      }*/
+    ],
+    "ParametersResistances": [
+      /*{
+        "Parameter": "",
+        "Probability":  7000  
+      }*/
+    ],
+    "EnemyAttacks": [
+      {
+        "Name": "Crawl",
+        "ManaRequired": 1,
+        "Effects": [
+          {
+            "Type": "Attack",
+            "Params": [ 0, 10, 6000, 0 ]
+          }
+        ]
+      }
+    ]
+  },
+
+  {
+    "Id": 2,
+    "Name": "Rat",
+    "BaseParameter": {
+      "Health": 450,
+      "Attack": 10,
+      "Deffense": 9,
+      "Intelligence": 6,
+      "Resistance": 14,
+      "Agility": 13,
+      "Luck": 7
+    },
+    "Level": 2,
+    "Xp": 60,
+    "Money": 14,
+    "MaxCardsAllowedToSteal": 2,
+    "IAScript": "",
+    "MaximumMana":  2,
+    "CardsCanBeStolen": [
+      {
+        "StealProbability": 5600,
+        "BaseValue": 6,
+        "CardId":  1  
+      }
+    ],
+    "DiseasesResistances": [
+      {
+        "State": "Poisoned",
+        "Probability":  7800  
+      }
+    ],
+    "ParametersResistances": [
+      {
+        "Parameter": "Deffense",
+        "Probability":  4000  
+      }
+    ],
+    "EnemyAttacks": [
+      {
+        "Name": "Crawl",
+        "ManaRequired": 1,
+        "Effects": [
+          {
+            "Type": "Attack",
+            "Params": [ 0, 10, 6000, 0 ]
+          }
+        ] 
+      }
+    ]  
+  }
+
+
+]

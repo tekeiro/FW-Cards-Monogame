@@ -20,5 +20,9 @@ namespace FWCards.Model.Chars
         public ParameterGrowth DeckCapacity { get; set; } = new ParameterGrowth();
         public ParameterGrowth XpRequired { get; set; } = new ParameterGrowth();
 
+        public override string ToString()
+        {
+            return $"{nameof(CharGrowth)}={{{nameof(Health)}: {Health}, {nameof(Attack)}: {Attack}, {nameof(Deffense)}: {Deffense}, {nameof(Intelligence)}: {Intelligence}, {nameof(Resistance)}: {Resistance}, {nameof(Agility)}: {Agility}, {nameof(Luck)}: {Luck}, {nameof(ManaCapacity)}: {ManaCapacity}, {nameof(DeckCapacity)}: {DeckCapacity}, {nameof(XpRequired)}: {XpRequired}}}";
+        }
     }
 }

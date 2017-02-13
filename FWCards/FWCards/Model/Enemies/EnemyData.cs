@@ -26,6 +26,7 @@ namespace FWCards.Model.Enemies
             if (CardsStolen > Info.MaxCardsAllowedToSteal)
             {
                 // TODO Implement this method
+                return null;
             }
             else
                 return null;
